@@ -8,16 +8,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication(exclude = {ErrorMvcAutoConfiguration.class})
-@Controller
 public class FourcupsApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(FourcupsApplication.class, args);
-	}
-
-	@GetMapping(value = "/")
-	public String index() {
-		return "index";
 	}
 
 }
