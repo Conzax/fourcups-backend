@@ -11,11 +11,11 @@
     <button class="btn" onclick="window.location.href='/'">Back</button>
 </header>
 <div class="center-container">
-    <form action="/api/accounts/${ in.get("nickname") }" method="POST">
-        <input class="input" name="nickname" type="text" placeholder="Nickname">
+    <form action="/signup" method="POST">
+        <input class="input" id="nickname" name="nickname" type="text" placeholder="Nickname">
         <input class="input" name="email" type="text" placeholder="E-mail">
         <input class="input" name="password" type="password" placeholder="Password">
-        <button class="btn-large">Sign Up</button>
+        <button type="submit" class="btn-large">Sign Up</button>
         <div class="link" onclick="window.location.href='/signin'">or sign in...</div>
     </form>
 </div>
@@ -65,13 +65,16 @@
         background-color: rgba(0, 0, 0, .125);
         width: 100%;
         padding: 8px 16px;
-        border: 0 solid;
+        border: 2px solid rgba(238, 238, 238, 1);
         border-radius: .64rem;
         margin-top: 4px;
         margin-bottom: 4px;
         font-size: 16px;
         outline: none;
         transition: .25s;
+    }
+    .input:focus {
+        border: 2px solid rgba(94, 92, 230, 1);
     }
     .btn {
         color: rgba(238, 238, 238, 1);

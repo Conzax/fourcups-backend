@@ -2,21 +2,38 @@
 <html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
-    <title>Sign In — Fourcups</title>
+    <title>Account — Fourcups</title>
 </head>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
 <body>
 <header>
-    <button class="btn" onclick="window.location.href='/'">Back</button>
+    <div class="nickname">demo</div>
 </header>
 <div class="center-container">
-    <form action="/signin" method="POST">
-        <input class="input" name="nickname" type="text" placeholder="Nickname" required>
-        <input class="input" name="password" type="password" placeholder="Password" required>
-        <button type="submit" class="btn-large">Sign In</button>
-        <div class="link" onclick="window.location.href='/signup'">or sign up...</div>
+    <div class="label">Profile</div>
+    <br>
+    <label>Change Nickname</label>
+    <form action="/update/nickname" method="POST">
+        <input class="input" name="nickname" type="text" placeholder="New Nickname" required>
+        <input class="input"type="submit" value="Update"/>
+        <div style="font-size: 10px; color: rgba(0, 0, 0, 0.5);">*you can only change this once per 2 weeks.</div>
     </form>
+    <br>
+    <label>Change E-mail</label>
+    <form action="/update/email" method="POST">
+        <input class="input" name="email" type="email" placeholder="New E-mail" required>
+        <input class="input" name="password" type="password" placeholder="Current Password" required>
+        <input class="input"type="submit" value="Update"/>
+    </form>
+    <br>
+    <label>Change Password</label>
+    <form action="/update/password" method="POST">
+        <input class="input" name="password" type="password" placeholder="Current Password" required>
+        <input class="input" name="password" type="password" placeholder="New Password" required>
+        <input class="input"type="submit" value="Update"/>
+    </form>
+    <button type="submit" class="btn-large">Sign Out</button>
 </div>
 </body>
 <style>
@@ -35,6 +52,28 @@
     }
     input:focus::placeholder {
         color: transparent;
+    }
+    label {
+        margin-left: 8px;
+    }
+    .nickname {
+        color: rgba(88, 86, 214, 1);
+        font-weight: bold;
+        font-size: 32px;
+    }
+    .sidebar {
+        width: 397px;
+        height: 100%;
+        position: fixed;
+        background: red;
+        background-size: cover;
+        animation: scroll 500s linear infinite;
+    }
+    .label {
+        color: rgba(88, 86, 214, 1);
+        margin-left: 8px;
+        font-weight: bold;
+        font-size: 32px;
     }
     .link {
         color: rgba(0, 0, 0, 0.5);

@@ -49,7 +49,6 @@ public class AccountController {
     public ResponseEntity<?> update(@PathVariable(name = "nickname") String nickname, @RequestBody Account update) {
         final Account account = accountService.get(nickname);
         account.setNickname(update.getNickname());
-        account.setNickname(update.getNickname());
         account.setEmail(update.getEmail());
         account.setPassword(update.getPassword());
 
