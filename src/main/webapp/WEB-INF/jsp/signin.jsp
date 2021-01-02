@@ -64,7 +64,7 @@
         background-color: rgba(0, 0, 0, .125);
         width: 100%;
         padding: 8px 16px;
-        border: 2px solid rgba(238, 238, 238, 1);
+        border: 2px solid rgba(0, 0, 0, .075);
         border-radius: .64rem;
         margin-top: 4px;
         margin-bottom: 4px;

@@ -1,80 +1,144 @@
 <%@ page language="java" contentType="text/html; UTF-8" pageEncoding="UTF-8"%>
 <html lang="en">
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>Account — Fourcups</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,500;1,500&amp;display=swap" rel="stylesheet">
 </head>
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+
 <body>
-<header>
-    <div class="nickname">demo</div>
-</header>
-<div class="center-container">
+<div class="sidebar">
+    <header>
+        <div class="nickname">BIETONSTAFF</div>
+    </header>
+    <button class="btn-sidebar" onclick="">Profile</button>
+    <button class="btn-sidebar" onclick="deleteAccountModal()">Delete Account</button>
+</div>
+<div class="login-modal" id="login-modal">
+    <div class="center-container">
+        <form action="/signup" method="POST">
+            <div style="margin-bottom: 8px; color: rgba(94, 92, 230, 1); font-size: 20px;">Are you sure?</div>
+            <input class="input-modal" id="password" name="nickname" type="password" placeholder="Password">
+            <input class="input-modal" id="password-retype" name="nickname" type="password" placeholder="Retype Password">
+            <button type="submit" style="width: 100%;" class="btn">Delete</button>
+            <div class="link" onclick="deleteAccountModalClose()">cancel</div>
+        </form>
+    </div>
+</div>
+<div class="container">
     <div class="label">Profile</div>
     <br>
     <label>Change Nickname</label>
     <form action="/update/nickname" method="POST">
-        <input class="input" name="nickname" type="text" placeholder="New Nickname" required>
-        <input class="input"type="submit" value="Update"/>
+        <input class="input" name="nickname" type="text" placeholder="New Nickname" required="">
+        <input class="input" type="submit" value="Update">
         <div style="font-size: 10px; color: rgba(0, 0, 0, 0.5);">*you can only change this once per 2 weeks.</div>
     </form>
     <br>
     <label>Change E-mail</label>
     <form action="/update/email" method="POST">
-        <input class="input" name="email" type="email" placeholder="New E-mail" required>
-        <input class="input" name="password" type="password" placeholder="Current Password" required>
-        <input class="input"type="submit" value="Update"/>
+        <input class="input" name="email" type="email" placeholder="New E-mail" required="">
+        <input class="input" name="password" type="password" placeholder="Current Password" required="">
+        <input class="input" type="submit" value="Update">
     </form>
     <br>
     <label>Change Password</label>
     <form action="/update/password" method="POST">
-        <input class="input" name="password" type="password" placeholder="Current Password" required>
-        <input class="input" name="password" type="password" placeholder="New Password" required>
-        <input class="input"type="submit" value="Update"/>
+        <input class="input" name="password" type="password" placeholder="Current Password" required="">
+        <input class="input" name="password" type="password" placeholder="New Password" required="">
+        <input class="input" type="submit" value="Update">
     </form>
-    <button type="submit" class="btn-large">Sign Out</button>
+    <button type="button" class="btn" onclick="window.location.href='/'">Sign Out</button>
 </div>
-</body>
+
 <style>
     * {
         font-family: 'Rubik', sans-serif;
         box-sizing: border-box;
     }
+
     header {
         padding: 15px 20px;
         overflow: hidden;
     }
+
     form {
         margin: 0 auto;
-        width: 240px;
-        text-align: center;
     }
     input:focus::placeholder {
         color: transparent;
     }
+
     label {
         margin-left: 8px;
     }
+
     .nickname {
-        color: rgba(88, 86, 214, 1);
+        color: rgba(255, 255, 255, 1);
         font-weight: bold;
-        font-size: 32px;
+        font-size: 28px;
     }
+
     .sidebar {
-        width: 397px;
+        display: none;
+        width: 260px;
         height: 100%;
         position: fixed;
-        background: red;
-        background-size: cover;
+        padding: 16px;
+        background-color: rgba(88, 86, 214, 1);
+        border-radius: .64rem;
         animation: scroll 500s linear infinite;
     }
+
+    .login-modal {
+        display: none;
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.75);
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        transition: .4s;
+    }
+
+    .container {
+        padding-left: 20%;
+        padding-top: 4%;
+        height: 100%;
+    }
+
+    @media only screen and (min-width: 1380px) {
+        .sidebar {
+            display: block;
+            width: 260px;
+            height: 100%;
+            position: fixed;
+            padding: 16px;
+            background-color: rgba(88, 86, 214, 1);
+            border-radius: .64rem;
+            animation: scroll 500s linear infinite;
+        }
+
+        .container {
+            padding-left: 20%;
+            padding-top: 4%;
+            height: 100%;
+        }
+    }
+
     .label {
         color: rgba(88, 86, 214, 1);
         margin-left: 8px;
         font-weight: bold;
         font-size: 32px;
     }
+
     .link {
         color: rgba(0, 0, 0, 0.5);
         margin-top: 16px;
@@ -82,9 +146,44 @@
         cursor: pointer;
         transition: .25s;
     }
+
     .link:hover {
         color: rgba(94, 92, 230, 1);
     }
+
+    .input {
+        color: rgba(94, 92, 230, 1);
+        background-color: rgba(0, 0, 0, .125);
+        padding: 8px 16px;
+        border: 2px solid rgba(0, 0, 0, .075);
+        border-radius: .64rem;
+        margin: 4px;
+        font-size: 16px;
+        outline: none;
+        transition: .25s;
+    }
+
+    .input:focus {
+        border: 2px solid rgba(94, 92, 230, 1);
+    }
+
+    .input-modal {
+        color: rgba(94, 92, 230, 1);
+        background-color: rgba(0, 0, 0, .125);
+        padding: 8px 16px;
+        border: 2px solid rgba(0, 0, 0, .075);
+        border-radius: .64rem;
+        margin: 4px;
+        width: 100%;
+        font-size: 16px;
+        outline: none;
+        transition: .25s;
+    }
+
+    .input-modal:focus {
+        border: 2px solid rgba(94, 92, 230, 1);
+    }
+
     .center-container {
         background-color: rgba(238, 238, 238, 1);
         border-radius: .64rem;
@@ -92,66 +191,63 @@
         position: absolute;
         margin: auto;
         top: 0;
+        width: 260px;
         right: 0;
         bottom: 0;
         left: 0;
-        width: fit-content;
         height: fit-content;
+        text-align: center;
     }
-    .input {
-        color: rgba(94, 92, 230, 1);
-        background-color: rgba(0, 0, 0, .125);
-        width: 100%;
-        padding: 8px 16px;
-        border: 2px solid rgba(238, 238, 238, 1);
+
+    .btn-sidebar {
+        color: rgba(238, 238, 238, 1);
+        background-color: rgba(0, 0, 0, 0.25);
+        padding: 10px 20px;
+        border: 0 solid;
         border-radius: .64rem;
-        margin-top: 4px;
-        margin-bottom: 4px;
-        font-size: 16px;
+        margin-top: 8px;
+        font-size: 18px;
+        width: 100%;
         outline: none;
         transition: .25s;
+        cursor: pointer;
     }
-    .input:focus {
-        border: 2px solid rgba(94, 92, 230, 1);
+
+    .btn-sidebar:hover {
+        background-color: rgba(255, 255, 255, 0.25);
+        border: 0;
+        box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.25);
     }
+
     .btn {
         color: rgba(238, 238, 238, 1);
         background-color: rgba(94, 92, 230, 1);
         padding: 8px 16px;
         border: 0 solid;
         border-radius: .64rem;
-        margin-top: 4px;
+        margin-top: 24px;
         margin-left: 4px;
-        margin-right: 16px;
-        font-size: 16px;
-        outline: none;
-        align-self: center;
-        transition: .25s;
-        cursor: pointer;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.125);
-    }
-    .btn:hover {
-        background-color: rgba(0, 0, 0, 1);
-        border: 0;
-        box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.25);
-    }
-    .btn-large {
-        color: rgba(238, 238, 238, 1);
-        background-color: rgba(94, 92, 230, 1);
-        width: 100%;
-        padding: 12px 24px;
-        border: 0 solid;
-        border-radius: .64rem;
-        margin-top: 8px;
+        margin-right: 4px;
         font-size: 24px;
         outline: none;
         transition: .25s;
         cursor: pointer;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.125);
     }
-    .btn-large:hover {
+
+    .btn:hover {
         background-color: rgba(0, 0, 0, 1);
         border: 0;
         box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.25);
     }
 </style>
+<script>
+    function deleteAccountModal() {
+        document.getElementById("login-modal").style.display = "flex";
+    }
+    function deleteAccountModalClose() {
+        document.getElementById("login-modal").style.display = "none";
+    }
+</script>
+</body>
+</html>
