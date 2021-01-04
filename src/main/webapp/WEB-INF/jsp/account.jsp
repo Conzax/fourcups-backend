@@ -116,6 +116,23 @@
             .bottom-nav {
                 display: none;
             }
+
+            .btn {
+                display: block;
+                color: rgba(238, 238, 238, 1);
+                background-color: rgba(94, 92, 230, 1);
+                padding: 8px 16px;
+                border: 0 solid;
+                border-radius: .64rem;
+                margin-top: 24px;
+                margin-left: 4px;
+                margin-right: 4px;
+                font-size: 24px;
+                outline: none;
+                transition: .25s;
+                cursor: pointer;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.125);
+            }
         }
 
         .label {
@@ -204,21 +221,8 @@
             border: 0;
             box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.25);
         }
-
         .btn {
-            color: rgba(238, 238, 238, 1);
-            background-color: rgba(94, 92, 230, 1);
-            padding: 8px 16px;
-            border: 0 solid;
-            border-radius: .64rem;
-            margin-top: 24px;
-            margin-left: 4px;
-            margin-right: 4px;
-            font-size: 24px;
-            outline: none;
-            transition: .25s;
-            cursor: pointer;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.125);
+            display: none;
         }
 
         .btn:hover {
@@ -275,8 +279,9 @@
     <button type="button" class="btn" onclick="window.location.href='/'">Sign Out</button>
 </div>
 <div class="bottom-nav">
-    <div style="display: block;"><i data-feather="user"></i></div>
-    <div style="display: block;"><i data-feather="trash"></i></div>
+    <div onclick="window.location.href='/account'" style="display: block;"><i data-feather="user"></i></div>
+    <div onclick="deleteAccountModal()" style="display: block;"><i data-feather="trash"></i></div>
+    <div onclick="window.location.href='/'" style="display: block;"><i data-feather="log-out"></i></div>
 </div>
 <script>
     feather.replace()
