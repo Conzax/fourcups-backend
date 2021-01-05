@@ -1,0 +1,1 @@
+feather.replace();function deleteAccountModal(){document.getElementById("login-modal").style.display="flex"}function deleteAccountModalClose(){document.getElementById("login-modal").style.display="none"}
