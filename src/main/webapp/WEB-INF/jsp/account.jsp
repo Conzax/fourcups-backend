@@ -13,8 +13,8 @@
     <header>
         <div class="nickname">BIETONSTAFF</div>
     </header>
-    <button class="btn-sidebar" onclick="">Profile</button>
     <button class="btn-sidebar" onclick="deleteAccountModal()">Delete Account</button>
+    <button class="btn-sidebar" onclick="window.location.href='/'">Sign Out</button>
 </div>
 <div class="login-modal" id="login-modal">
     <div class="center-container">
@@ -22,7 +22,7 @@
             <div style="margin-bottom:8px;color:rgba(94,92,230,1);font-size:20px">Are you sure?</div>
             <input class="input-modal" id="password" name="nickname" type="password" placeholder="Password">
             <input class="input-modal" id="password-retype" name="nickname" type="password" placeholder="Retype Password">
-            <button type="submit" style="width:100%" class="btn">Delete</button>
+            <button type="submit" style="width:100%;" class="btn-modal">Delete</button>
             <div class="link" onclick="deleteAccountModalClose()">cancel</div>
         </form>
     </div>
@@ -50,10 +50,8 @@
         <input class="input" name="password" type="password" placeholder="New Password" required="">
         <input class="input" type="submit" value="Update">
     </form>
-    <button type="button" class="btn" onclick="window.location.href='/'">Sign Out</button>
 </div>
 <div class="bottom-nav">
-    <div onclick="window.location.href='/account'" style="display:block"><i data-feather="user"></i></div>
     <div onclick="deleteAccountModal()" style="display:block"><i data-feather="trash"></i></div>
     <div onclick="window.location.href='/'" style="display:block"><i data-feather="log-out"></i></div>
 </div>
