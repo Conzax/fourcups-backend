@@ -11,17 +11,18 @@
 <body>
 <div class="sidebar">
     <header>
-        <div class="nickname">BIETONSTAFF</div>
+        <div class="nickname">${ nickname }</div>
     </header>
     <button class="btn-sidebar" onclick="deleteAccountModal()">Delete Account</button>
     <button class="btn-sidebar" onclick="window.location.href='/'">Sign Out</button>
 </div>
-<div class="login-modal" id="login-modal">
+<div class="delete-modal" id="delete-modal">
     <div class="center-container">
-        <form action="/signup" method="POST">
+        <form action="delete" method="POST">
             <div style="margin-bottom:8px;color:rgba(94,92,230,1);font-size:20px">Are you sure?</div>
+            <input type="hidden" value="${ nickname }">
             <input class="input-modal" id="password" name="nickname" type="password" placeholder="Password">
-            <input class="input-modal" id="password-retype" name="nickname" type="password" placeholder="Retype Password">
+            <input class="input-modal" id="passwordRetype" name="nickname" type="password" placeholder="Retype Password">
             <button type="submit" style="width:100%;" class="btn-modal">Delete</button>
             <div class="link" onclick="deleteAccountModalClose()">cancel</div>
         </form>

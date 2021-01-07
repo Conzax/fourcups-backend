@@ -1,8 +1,6 @@
 package com.conzax.fourcups.controller;
 
-import com.conzax.fourcups.entity.Account;
 import com.conzax.fourcups.entity.Tournament;
-import com.conzax.fourcups.service.AccountService;
 import com.conzax.fourcups.service.TournamentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
