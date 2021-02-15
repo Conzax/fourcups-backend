@@ -11,11 +11,5 @@ public class FourcupsApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(FourcupsApplication.class, args);
-
-		UUID uuid = UUID.randomUUID();
-		String uuid1 = uuid.toString().replace("-", "");
-
-		System.out.println(uuid1);
-		System.out.println(uuid.toString());
 	}
 }
