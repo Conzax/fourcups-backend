@@ -27,12 +27,22 @@ public class AccountController {
     private final AccountService accountService;
     private final AccountModelAssembler accountModelAssembler;
 
+    /**
+     * Устанавливает accountService и accountModelAssembler
+     * @param accountService сервис аккаунта
+     * @param accountModelAssembler сборщик модели аккаунта
+     */
     @Autowired
     public AccountController(AccountService accountService, AccountModelAssembler accountModelAssembler) {
         this.accountService = accountService;
         this.accountModelAssembler = accountModelAssembler;
     }
 
+    /**
+     * Возвращает сущность ответа
+     * @param account аккаунт
+     * @return сущность ответа с ссылкой на себя, модель сущности
+     */
     @PostMapping(value = "/api/public/accounts")
     public ResponseEntity<?> create(@RequestBody Account account) {
         EntityModel<Account> entityModel = accountModelAssembler.toModel(accountService.create(account));
@@ -42,6 +52,10 @@ public class AccountController {
                 .body(entityModel);
     }
 
+    /**
+     * Возвращает модель коллекции модели сущности аккаунта
+     * @return модель коллекции модель сущности аккаунта
+     */
     @GetMapping(value = "/api/protected/accounts")
     public CollectionModel<EntityModel<Account>> all() {
         List<EntityModel<Account>> accounts = accountService.getAll().stream()
@@ -52,6 +66,11 @@ public class AccountController {
                 linkTo(methodOn(AccountController.class).all()).withSelfRel());
     }
 
+    /**
+     * Возвращает модель сущности от аккаунта
+     * @param id идентификатор аккаунта
+     * @return модель сущности от аккаунта
+     */
     @GetMapping(value = "/api/protected/accounts/{id}")
     public EntityModel<Account> one(@PathVariable UUID id) {
         Account account = accountService.getById(id);
@@ -59,6 +78,12 @@ public class AccountController {
         return accountModelAssembler.toModel(account);
     }
 
+    /**
+     * Возвращает пустую сущность ответа
+     * @param authentication аутентификация
+     * @param requestBody тело запроса
+     * @return сущность ответа
+     */
     @PutMapping(value = "/api/protected/accounts/username")
     public ResponseEntity<?> updateUsername(Authentication authentication, @RequestBody Map<String, String> requestBody) {
         accountService.updateUsername(authentication.getName(), requestBody.get("username"));
@@ -66,6 +91,12 @@ public class AccountController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    /**
+     * Возвращает пустую сущность ответа
+     * @param authentication
+     * @param requestBody
+     * @return пустую сущность ответа
+     */
     @PutMapping(value = "/api/protected/accounts/password")
     public ResponseEntity<?> updatePassword(Authentication authentication, @RequestBody Map<String, String> requestBody) {
         accountService.updatePassword(authentication.getName(), requestBody.get("password"));
@@ -73,6 +104,11 @@ public class AccountController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    /**
+     * Возвращает пустую сущность ответа
+     * @param authentication аутентификация
+     * @return пустую сущность ответа
+     */
     @DeleteMapping(value = "/api/protected/accounts")
     public ResponseEntity<?> delete(Authentication authentication) {
         accountService.delete(authentication.getName());

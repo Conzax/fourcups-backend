@@ -12,7 +12,23 @@ import java.util.UUID;
 @Transactional
 public interface AccountRepository extends JpaRepository<Account, UUID> {
 
+    /**
+     * Возвращает аккаунт в Optional<> по идентификатору
+     * @param id идентификатор аккаунта
+     * @return аккаунт в Optional<>
+     */
     Optional<Account> findById(UUID id);
+
+    /**
+     * Возвращает аккаунт по имени пользователя
+     * @param username имя пользователя аккаунта
+     * @return акканут
+     */
     Account findByUsername(String username);
+
+    /**
+     * Удаляет аккаунта по имени пользователя
+     * @param username имя пользователя аккаунта
+     */
     void deleteByUsername(String username);
 }

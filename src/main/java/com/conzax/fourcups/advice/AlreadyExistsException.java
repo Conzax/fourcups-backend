@@ -12,6 +12,12 @@ import java.io.IOException;
 @ControllerAdvice
 class AlreadyExistsException extends ResponseEntityExceptionHandler {
 
+    /**
+     * Обрабатывает ошибку, когда вознивает конфликт(аккаунт уже существует)
+     * @param response ответ
+     * @param exception исключение
+     * @throws IOException исключение ввода-вывода
+     */
     @ExceptionHandler(AccountAlreadyExistsException.class)
     public void tournamentNotFoundHandler(HttpServletResponse response, AccountAlreadyExistsException exception) throws IOException {
         response.setStatus(HttpStatus.CONFLICT.value());

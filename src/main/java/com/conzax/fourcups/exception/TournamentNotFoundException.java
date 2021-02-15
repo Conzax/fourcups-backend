@@ -4,5 +4,9 @@ import java.util.UUID;
 
 public class TournamentNotFoundException extends RuntimeException {
 
-    public TournamentNotFoundException(UUID id) { super("Tournament not found " + id); }
+    /**
+     * Возвращает текст "Идентификатор турнира не найден: идентификатор" по идентификатору
+     * @param id идентификатор турнира
+     */
+    public TournamentNotFoundException(UUID id) { super("Tournament ID not found " + id); }
 }

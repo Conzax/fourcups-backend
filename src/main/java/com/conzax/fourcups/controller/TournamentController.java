@@ -27,12 +27,23 @@ public class TournamentController {
     private final TournamentService tournamentService;
     private final TournamentModelAssembler tournamentModelAssembler;
 
+    /**
+     * Устанавливает tournamentService и tournamentModelAssembler
+     * @param tournamentService сервис турнира
+     * @param tournamentModelAssembler сборщик модели турнира
+     */
     @Autowired
     public TournamentController(TournamentService tournamentService, TournamentModelAssembler tournamentModelAssembler) {
         this.tournamentService = tournamentService;
         this.tournamentModelAssembler = tournamentModelAssembler;
     }
 
+    /**
+     * Возвращает сущность ответа
+     * @param authentication аутентификация
+     * @param requestBody тело запроса
+     * @return сущность ответа со ссылкой на себя, модель сущности
+     */
     @PostMapping(value = "/api/protected/tournaments")
     public ResponseEntity<?> create(Authentication authentication, @RequestBody Map<String, String> requestBody) {
         Tournament tournament = new Tournament();
@@ -46,6 +57,10 @@ public class TournamentController {
                 .body(entityModel);
     }
 
+    /**
+     * Возвращает модель коллекции модели сущности от турнира
+     * @return модель коллекции модели сущности от турнира
+     */
     @GetMapping(value = "/api/protected/tournaments")
     public CollectionModel<EntityModel<Tournament>> all() {
         List<EntityModel<Tournament>> tournaments = tournamentService.getAll().stream()
@@ -56,13 +71,24 @@ public class TournamentController {
                 linkTo(methodOn(TournamentController.class).all()).withSelfRel());
     }
 
+    /**
+     * Возвращает модель сущности от турнира
+     * @param id идентификатор турнира
+     * @return модель сущности от турнира
+     */
     @GetMapping(value = "/api/protected/tournaments/{id}")
     public EntityModel<Tournament> one(@PathVariable UUID id) {
         Tournament tournament = tournamentService.getById(id);
 
-        return  tournamentModelAssembler.toModel(tournament);
+        return tournamentModelAssembler.toModel(tournament);
     }
 
+    /**
+     * Возвращает пустую сущность ответа
+     * @param id идентификатор турнира
+     * @param requestBody тело запроса
+     * @return пустую сущность ответа
+     */
     @PutMapping(value = "/api/protected/tournaments/{id}/name")
     public ResponseEntity<?> updateName(@PathVariable UUID id, @RequestBody Map<String, String> requestBody) {
         tournamentService.updateName(id, requestBody.get("name"));
@@ -70,6 +96,12 @@ public class TournamentController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    /**
+     * Возвращает пустую сущность ответа
+     * @param id идентификатор туранира
+     * @param requestBody тело запроса
+     * @return пустую сущность ответа
+     */
     @PutMapping(value = "/api/protected/tournaments/{id}/desc")
     public ResponseEntity<?> updateDesc(@PathVariable UUID id, @RequestBody Map<String, String> requestBody) {
         tournamentService.updateDesc(id, requestBody.get("desc"));

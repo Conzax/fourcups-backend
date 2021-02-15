@@ -13,12 +13,24 @@ import java.io.IOException;
 @ControllerAdvice
 class NotFoundAdvice extends ResponseEntityExceptionHandler {
 
+    /**
+     * Обрабатывает ошибку, когда аккаут не найден
+     * @param response ответ
+     * @param exception исключение
+     * @throws IOException исключение ввода-вывода
+     */
     @ExceptionHandler(AccountNotFoundException.class)
     public void accountNotFoundHandler(HttpServletResponse response, AccountNotFoundException exception) throws IOException {
         response.setStatus(HttpStatus.NOT_FOUND.value());
         response.getWriter().print(exception.getMessage());
     }
 
+    /**
+     * Обрабатывает ошибку, когда турнир не найден
+     * @param response ответ
+     * @param exception исключение
+     * @throws IOException исключение ввода-вывода
+     */
     @ExceptionHandler(TournamentNotFoundException.class)
     public void tournamentNotFoundHandler(HttpServletResponse response, TournamentNotFoundException exception) throws IOException {
         response.setStatus(HttpStatus.NOT_FOUND.value());

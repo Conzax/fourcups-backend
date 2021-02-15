@@ -18,20 +18,34 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     AccountDetailsService accountDetailsService;
 
 
+    /**
+     * Возвращает кодировщика паролей
+     * @return кодировщик паролей BCrypt
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
+    /**
+     * Конфигурирует безопасность HTTP
+     * @param security безопасность HTTP
+     * @throws Exception исключение
+     */
     @Override
     protected void configure(HttpSecurity security) throws Exception {
         security
-                .antMatcher("/api/private/**").csrf().disable()
+                .antMatcher("/api/protected/**").csrf().disable()
                 .authorizeRequests().anyRequest().authenticated()
                 .and().httpBasic()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 
+    /**
+     * Конфигурирует
+     * @param builder конструктор менеджера аутентификации
+     * @throws Exception исключение
+     */
     @Override
     public void configure(AuthenticationManagerBuilder builder) throws Exception {
         builder

@@ -10,6 +10,17 @@ import java.util.UUID;
 @Repository
 public interface TournamentRepository extends JpaRepository<Tournament, UUID> {
 
+    /**
+     * Возвращает турнир в Optional<> по идентификатору
+     * @param id идентификатор турнира
+     * @return турнир в Optional<>
+     */
     Optional<Tournament> findById(UUID id);
+
+    /**
+     * Возвращает турнир по имени пользователя автора
+     * @param username имя пользователя автора
+     * @return турнир
+     */
     Tournament findByAuthor(String username);
 }

@@ -19,6 +19,12 @@ public class AccountDetailsService implements UserDetailsService {
     @Autowired
     private AccountRepository accountRepository;
 
+    /**
+     * Загружает данные по имени пользователя
+     * @param username имя пользователя
+     * @return данные пользователя
+     * @throws UsernameNotFoundException объявляет ошибку, если пользователь не найден
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Account account = accountRepository.findByUsername(username);
