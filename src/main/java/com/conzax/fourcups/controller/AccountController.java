@@ -82,7 +82,7 @@ public class AccountController {
      * Возвращает пустую сущность ответа
      * @param authentication аутентификация
      * @param requestBody тело запроса
-     * @return сущность ответа
+     * @return пустую сущность ответа
      */
     @PutMapping(value = "/api/protected/accounts/username")
     public ResponseEntity<?> updateUsername(Authentication authentication, @RequestBody Map<String, String> requestBody) {
@@ -93,8 +93,8 @@ public class AccountController {
 
     /**
      * Возвращает пустую сущность ответа
-     * @param authentication
-     * @param requestBody
+     * @param authentication аутентификация
+     * @param requestBody тело запроса
      * @return пустую сущность ответа
      */
     @PutMapping(value = "/api/protected/accounts/password")
