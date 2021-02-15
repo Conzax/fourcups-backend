@@ -1,63 +1,82 @@
 package com.conzax.fourcups.controller;
 
 import com.conzax.fourcups.entity.Account;
+import com.conzax.fourcups.model_assembler.AccountModelAssembler;
 import com.conzax.fourcups.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.IanaLinkRelations;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+import java.util.stream.Collectors;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
-@RequestMapping("/api")
 public class AccountController {
 
     @Autowired
     private final AccountService accountService;
+    private final AccountModelAssembler accountModelAssembler;
 
     @Autowired
-    public AccountController(AccountService accountService) {
+    public AccountController(AccountService accountService, AccountModelAssembler accountModelAssembler) {
         this.accountService = accountService;
+        this.accountModelAssembler = accountModelAssembler;
     }
 
-    @PostMapping(value = "/accounts")
-    public ResponseEntity<?> save(@RequestBody Account account) {
-        accountService.save(account);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    @PostMapping(value = "/api/public/accounts")
+    public ResponseEntity<?> create(@RequestBody Account account) {
+        EntityModel<Account> entityModel = accountModelAssembler.toModel(accountService.create(account));
+
+        return ResponseEntity
+                .created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri())
+                .body(entityModel);
     }
 
-    @GetMapping(value = "/accounts")
-    public ResponseEntity<List<Account>> get() {
-        final List<Account> accounts = accountService.getAll();
+    @GetMapping(value = "/api/protected/accounts")
+    public CollectionModel<EntityModel<Account>> all() {
+        List<EntityModel<Account>> accounts = accountService.getAll().stream()
+                .map(accountModelAssembler::toModel)
+                .collect(Collectors.toList());
 
-        return accounts != null && !accounts.isEmpty()
-                ? new ResponseEntity<>(accounts, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return CollectionModel.of(accounts,
+                linkTo(methodOn(AccountController.class).all()).withSelfRel());
     }
 
-    @GetMapping(value = "/accounts/{nickname}")
-    public ResponseEntity<Account> read(@PathVariable(name = "nickname") String nickname) {
-        final Account account = accountService.get(nickname);
+    @GetMapping(value = "/api/protected/accounts/{id}")
+    public EntityModel<Account> one(@PathVariable UUID id) {
+        Account account = accountService.getById(id);
 
-        return account != null
-                ? new ResponseEntity<>(account, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return accountModelAssembler.toModel(account);
     }
 
-    @PutMapping(value = "/accounts/{nickname}")
-    public ResponseEntity<?> update(@PathVariable(name = "nickname") String nickname, @RequestBody Account update) {
-        final Account account = accountService.get(nickname);
-        account.setNickname(update.getNickname());
-        account.setEmail(update.getEmail());
-        account.setPassword(update.getPassword());
+    @PutMapping(value = "/api/protected/accounts/username")
+    public ResponseEntity<?> updateUsername(Authentication authentication, @RequestBody Map<String, String> requestBody) {
+        accountService.updateUsername(authentication.getName(), requestBody.get("username"));
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "/accounts/{nickname}")
-    public ResponseEntity<?> delete(@PathVariable(name = "nickname") String nickname) {
-        accountService.delete(nickname);
+    @PutMapping(value = "/api/protected/accounts/password")
+    public ResponseEntity<?> updatePassword(Authentication authentication, @RequestBody Map<String, String> requestBody) {
+        accountService.updatePassword(authentication.getName(), requestBody.get("password"));
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @DeleteMapping(value = "/api/protected/accounts")
+    public ResponseEntity<?> delete(Authentication authentication) {
+        accountService.delete(authentication.getName());
+
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

@@ -1,70 +1,79 @@
 package com.conzax.fourcups.controller;
 
 import com.conzax.fourcups.entity.Tournament;
+import com.conzax.fourcups.model_assembler.TournamentModelAssembler;
 import com.conzax.fourcups.service.TournamentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.IanaLinkRelations;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+import java.util.stream.Collectors;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
-@RequestMapping("/api")
 public class TournamentController {
 
     @Autowired
     private final TournamentService tournamentService;
+    private final TournamentModelAssembler tournamentModelAssembler;
 
     @Autowired
-    public TournamentController(TournamentService tournamentService) {
+    public TournamentController(TournamentService tournamentService, TournamentModelAssembler tournamentModelAssembler) {
         this.tournamentService = tournamentService;
+        this.tournamentModelAssembler = tournamentModelAssembler;
     }
 
-    @PostMapping(value = "/tournaments/follow")
-    public ResponseEntity<?> follow(@RequestBody Long id, String nickname) {
-        final Tournament tournament = tournamentService.get(id);
-        final String[] followers = tournament.getFollowers();
-        tournament.setFollowers(followers);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    @PostMapping(value = "/api/protected/tournaments")
+    public ResponseEntity<?> create(Authentication authentication, @RequestBody Map<String, String> requestBody) {
+        Tournament tournament = new Tournament();
+        tournament.setName(requestBody.get("name"));
+        tournament.setDesc(requestBody.get("desc"));
+        tournament.setAuthor(authentication.getName());
+        EntityModel<Tournament> entityModel = tournamentModelAssembler.toModel(tournamentService.create(tournament));
+
+        return ResponseEntity
+                .created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri())
+                .body(entityModel);
     }
 
-    @PostMapping(value = "/tournaments")
-    public ResponseEntity<?> save(@RequestBody Tournament tournament) {
-        tournamentService.save(tournament);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    @GetMapping(value = "/api/protected/tournaments")
+    public CollectionModel<EntityModel<Tournament>> all() {
+        List<EntityModel<Tournament>> tournaments = tournamentService.getAll().stream()
+                .map(tournamentModelAssembler::toModel)
+                .collect(Collectors.toList());
+
+        return CollectionModel.of(tournaments,
+                linkTo(methodOn(TournamentController.class).all()).withSelfRel());
     }
 
-    @GetMapping(value = "/tournaments")
-    public ResponseEntity<List<Tournament>> get() {
-        final List<Tournament> tournaments = tournamentService.getAll();
+    @GetMapping(value = "/api/protected/tournaments/{id}")
+    public EntityModel<Tournament> one(@PathVariable UUID id) {
+        Tournament tournament = tournamentService.getById(id);
 
-        return tournaments != null && !tournaments.isEmpty()
-                ? new ResponseEntity<>(tournaments, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return  tournamentModelAssembler.toModel(tournament);
     }
 
-    @GetMapping(value = "/tournaments/{id}")
-    public ResponseEntity<Tournament> read(@PathVariable(name = "id") Long id) {
-        final Tournament tournament = tournamentService.get(id);
-
-        return tournament != null
-                ? new ResponseEntity<>(tournament, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-
-    @PutMapping(value = "/tournaments/{id}")
-    public ResponseEntity<?> update(@PathVariable(name = "id") Long id, @RequestBody Tournament update) {
-        final Tournament tournament = tournamentService.get(id);
-        tournament.setName(update.getName());
-        tournament.setDescription(update.getDescription());
+    @PutMapping(value = "/api/protected/tournaments/{id}/name")
+    public ResponseEntity<?> updateName(@PathVariable UUID id, @RequestBody Map<String, String> requestBody) {
+        tournamentService.updateName(id, requestBody.get("name"));
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "/tournaments/{id}")
-    public ResponseEntity<?> delete(@PathVariable(name = "id") Long id) {
-        tournamentService.delete(id);
+    @PutMapping(value = "/api/protected/tournaments/{id}/desc")
+    public ResponseEntity<?> updateDesc(@PathVariable UUID id, @RequestBody Map<String, String> requestBody) {
+        tournamentService.updateDesc(id, requestBody.get("desc"));
+
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

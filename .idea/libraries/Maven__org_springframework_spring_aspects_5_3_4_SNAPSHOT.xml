@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.springframework:spring-aspects:5.3.4-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aspects/5.3.4-SNAPSHOT/spring-aspects-5.3.4-20210211.213600-64.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aspects/5.3.4-SNAPSHOT/spring-aspects-5.3.4-20210211.213600-64-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aspects/5.3.4-SNAPSHOT/spring-aspects-5.3.4-20210211.213600-64-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

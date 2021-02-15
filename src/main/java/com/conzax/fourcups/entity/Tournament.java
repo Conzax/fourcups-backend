@@ -1,50 +1,25 @@
 package com.conzax.fourcups.entity;
 
-import net.minidev.json.JSONArray;
-import org.hibernate.annotations.Type;
-
 import javax.persistence.*;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.UUID;
 
 @Entity
-@Table(name = "TOURNAMENTS")
 public class Tournament {
 
     @Id
-    @GeneratedValue
-    private Long id;
-
-    @Column(unique = true)
+    private UUID id;
     private String name;
-
-    @Column(unique = true, nullable = false)
-    private String description;
+    private String desc;
     private String author;
 
-    @Type(type = "string-array")
-    @Column(columnDefinition = "text[]")
-    private String[] followers;
-
-    public Tournament() {
-
-    }
-
-    public Tournament(Long id, String name, String description, String author, String[] followers) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.author = author;
-        this.followers = followers;
-    }
+    public Tournament() {}
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long getId() {
+    @GeneratedValue
+    public UUID getId() {
         return id;
     }
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -55,11 +30,11 @@ public class Tournament {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDesc() {
+        return desc;
     }
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDesc(String description) {
+        this.desc = description;
     }
 
     public String getAuthor() {
@@ -67,10 +42,5 @@ public class Tournament {
     }
     public void setAuthor(String author) {
         this.author = author;
-    }
-
-    public String[] getFollowers() { return followers; }
-    public void setFollowers(String[] followers) {
-        this.followers = followers;
     }
 }
