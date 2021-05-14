@@ -8,6 +8,7 @@ class FourcupsApplicationTests {
 
 	@Test
 	void contextLoads() {
+
 	}
 
 }

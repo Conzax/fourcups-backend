@@ -1,39 +1,27 @@
 package com.conzax.fourcups.advice;
 
 import com.conzax.fourcups.exception.AccountNotFoundException;
-import com.conzax.fourcups.exception.TournamentNotFoundException;
+import com.conzax.fourcups.exception.EventNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import javax.activation.MimeType;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@ControllerAdvice
+@RestControllerAdvice
 class NotFoundAdvice extends ResponseEntityExceptionHandler {
 
-    /**
-     * Обрабатывает ошибку, когда аккаут не найден
-     * @param response ответ
-     * @param exception исключение
-     * @throws IOException исключение ввода-вывода
-     */
     @ExceptionHandler(AccountNotFoundException.class)
     public void accountNotFoundHandler(HttpServletResponse response, AccountNotFoundException exception) throws IOException {
-        response.setStatus(HttpStatus.NOT_FOUND.value());
-        response.getWriter().print(exception.getMessage());
+        response.sendError(HttpServletResponse.SC_NOT_FOUND, exception.getMessage());
     }
 
-    /**
-     * Обрабатывает ошибку, когда турнир не найден
-     * @param response ответ
-     * @param exception исключение
-     * @throws IOException исключение ввода-вывода
-     */
-    @ExceptionHandler(TournamentNotFoundException.class)
-    public void tournamentNotFoundHandler(HttpServletResponse response, TournamentNotFoundException exception) throws IOException {
-        response.setStatus(HttpStatus.NOT_FOUND.value());
-        response.getWriter().print(exception.getMessage());
+    @ExceptionHandler(EventNotFoundException.class)
+    public void tournamentNotFoundHandler(HttpServletResponse response, EventNotFoundException exception) throws IOException {
+        response.sendError(HttpServletResponse.SC_NOT_FOUND, exception.getMessage());
     }
 }

@@ -6,10 +6,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class FourcupsApplication {
 
-	/**
-	 * Запускает приложение
-	 * @param args аргументы, данные при запуске
-	 */
 	public static void main(String[] args) {
 		SpringApplication.run(FourcupsApplication.class, args);
 	}
