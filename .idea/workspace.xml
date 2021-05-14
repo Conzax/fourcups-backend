@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b9707ab8-0b43-4bbd-ac61-39ca0a23fe19" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1oNPhCC5QvOEGIhvJVU7otWMGsz" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JAVA&#10;JSON&#10;JSP" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="preferences.general" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\biert\IdeaProjects\fourcups\src\main\resources\static\js" />
+      <recent name="C:\Users\biert\IdeaProjects\fourcups\src\main\resources\static\css" />
+      <recent name="C:\Users\biert\IdeaProjects\fourcups\src\main\resources\templates" />
+      <recent name="C:\Users\biert\IdeaProjects\Fourcups\src\main\webapp\WEB-INF" />
+      <recent name="C:\Users\biert\IdeaProjects\Fourcups\src\main\webapp" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="FourcupsApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="fourcups" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.conzax.fourcups.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.conzax.fourcups.FourcupsApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.FourcupsApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b9707ab8-0b43-4bbd-ac61-39ca0a23fe19" name="Default Changelist" comment="" />
+      <created>1613124194981</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1613124194981</updated>
+      <workItem from="1613124198024" duration="1332000" />
+      <workItem from="1613126233354" duration="2756000" />
+      <workItem from="1613129055667" duration="44000" />
+      <workItem from="1613129215113" duration="9896000" />
+      <workItem from="1613154591052" duration="1361000" />
+      <workItem from="1613230158669" duration="4704000" />
+      <workItem from="1613252074687" duration="2869000" />
+      <workItem from="1613298189590" duration="3991000" />
+      <workItem from="1613391185246" duration="20836000" />
+      <workItem from="1613636887415" duration="28000" />
+      <workItem from="1613636997483" duration="2228000" />
+      <workItem from="1613643449816" duration="836000" />
+      <workItem from="1613645623307" duration="3766000" />
+      <workItem from="1613649719100" duration="824000" />
+      <workItem from="1613809329560" duration="14000" />
+      <workItem from="1614699445558" duration="18000" />
+      <workItem from="1614778989179" duration="1625000" />
+      <workItem from="1614867510432" duration="271000" />
+      <workItem from="1614867819558" duration="2060000" />
+      <workItem from="1614879045956" duration="1679000" />
+      <workItem from="1614963074325" duration="1213000" />
+      <workItem from="1614964313769" duration="773000" />
+      <workItem from="1615035276514" duration="1184000" />
+      <workItem from="1615072254297" duration="765000" />
+      <workItem from="1615108793869" duration="3473000" />
+      <workItem from="1615394681687" duration="676000" />
+      <workItem from="1615395826538" duration="2850000" />
+      <workItem from="1615549753152" duration="2097000" />
+      <workItem from="1615743172143" duration="286000" />
+      <workItem from="1615915553279" duration="2268000" />
+      <workItem from="1615919049985" duration="645000" />
+      <workItem from="1616664690225" duration="216000" />
+      <workItem from="1616945148094" duration="2279000" />
+      <workItem from="1617115312119" duration="3304000" />
+      <workItem from="1617282726280" duration="767000" />
+      <workItem from="1617728626272" duration="1706000" />
+      <workItem from="1617987009897" duration="19000" />
+      <workItem from="1618155611504" duration="2884000" />
+      <workItem from="1618245210980" duration="4563000" />
+      <workItem from="1618253323474" duration="4555000" />
+      <workItem from="1618290794475" duration="3984000" />
+      <workItem from="1618294838018" duration="1762000" />
+      <workItem from="1618326661964" duration="75000" />
+      <workItem from="1618331445160" duration="1977000" />
+      <workItem from="1618396150607" duration="3474000" />
+      <workItem from="1618931047201" duration="976000" />
+      <workItem from="1620929266725" duration="1843000" />
+      <workItem from="1621014078105" duration="3082000" />
+    </task>
+    <task id="LOCAL-00001" summary="final update">
+      <created>1613406541956</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1613406541956</updated>
+    </task>
+    <task id="LOCAL-00002" summary="final update">
+      <created>1613406691957</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1613406691957</updated>
+    </task>
+    <task id="LOCAL-00003" summary="final update">
+      <created>1613406776864</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1613406776864</updated>
+    </task>
+    <task id="LOCAL-00004" summary="final update">
+      <created>1613413072734</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1613413072734</updated>
+    </task>
+    <task id="LOCAL-00005" summary="final update">
+      <created>1613413897611</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1613413897611</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="final update" />
+    <option name="LAST_COMMIT_MESSAGE" value="final update" />
+  </component>
+</project>
